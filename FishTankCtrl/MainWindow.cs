@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Net;
-using System.Timers;
 using Gtk;
+using GLib;
 
 public partial class MainWindow: Gtk.Window
 {
 	public MainWindow () : base ("Center")
 	{
 		Build ();
-		Timer UpdateIP = new Timer(300000);
-		UpdateIP.Elapsed += new ElapsedEventHandler (delegate {
-			getIP ();
-		});
-		UpdateIP.Start ();
+		GLib.Timeout.Add(500, new GLib.TimeoutHandler (getTemp) );
 		getIP ();
+	}
+
+	protected bool getTemp()
+	{
+		
+		return true;
 	}
 
 	protected void getIP()
