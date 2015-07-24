@@ -8,11 +8,11 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/FishTankCtrl.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="320 240">
+  <widget class="Gtk.Window" id="MainWindow" design-size="320 286">
     <property name="MemberName" />
     <property name="WidthRequest">320</property>
     <property name="HeightRequest">240</property>
-    <property name="Title" translatable="yes">Tank Ctrl</property>
+    <property name="Title" translatable="yes">Fish Tank Ctrl</property>
     <property name="WindowPosition">Center</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
@@ -232,6 +232,7 @@
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
+                <property name="Padding">5</property>
               </packing>
             </child>
             <child>
@@ -342,9 +343,36 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="lblIPAddress">
+          <widget class="Gtk.HBox" id="hbox2">
             <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">IP Address</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Label" id="lblIPAddress">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">IP Address</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+                <property name="Padding">5</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Image" id="status">
+                <property name="MemberName" />
+                <property name="Pixbuf">stock:gtk-yes Menu</property>
+              </widget>
+              <packing>
+                <property name="PackType">End</property>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+                <property name="Padding">5</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="PackType">End</property>
@@ -352,6 +380,7 @@
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
+            <property name="Padding">5</property>
           </packing>
         </child>
       </widget>

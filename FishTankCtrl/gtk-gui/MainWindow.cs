@@ -53,7 +53,11 @@ public partial class MainWindow
 	
 	private global::Gtk.ProgressBar pbTemp1;
 	
+	private global::Gtk.HBox hbox2;
+	
 	private global::Gtk.Label lblIPAddress;
+	
+	private global::Gtk.Image status;
 
 	protected virtual void Build ()
 	{
@@ -62,14 +66,13 @@ public partial class MainWindow
 		this.WidthRequest = 320;
 		this.HeightRequest = 240;
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("Tank Ctrl");
+		this.Title = global::Mono.Unix.Catalog.GetString ("Fish Tank Ctrl");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(1));
 		this.Resizable = false;
 		this.AllowGrow = false;
 		this.Gravity = ((global::Gdk.Gravity)(5));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox ();
-		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox1 = new global::Gtk.HBox ();
@@ -228,6 +231,7 @@ public partial class MainWindow
 		w15.Position = 0;
 		w15.Expand = false;
 		w15.Fill = false;
+		w15.Padding = ((uint)(5));
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.vseparator1 = new global::Gtk.VSeparator ();
 		this.vseparator1.Name = "vseparator1";
@@ -309,21 +313,43 @@ public partial class MainWindow
 		w24.Fill = false;
 		w24.Padding = ((uint)(5));
 		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox2 = new global::Gtk.HBox ();
+		this.hbox2.Name = "hbox2";
+		this.hbox2.Spacing = 6;
+		// Container child hbox2.Gtk.Box+BoxChild
 		this.lblIPAddress = new global::Gtk.Label ();
 		this.lblIPAddress.Name = "lblIPAddress";
 		this.lblIPAddress.LabelProp = global::Mono.Unix.Catalog.GetString ("IP Address");
-		this.vbox1.Add (this.lblIPAddress);
-		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.lblIPAddress]));
-		w25.PackType = ((global::Gtk.PackType)(1));
-		w25.Position = 1;
+		this.hbox2.Add (this.lblIPAddress);
+		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.lblIPAddress]));
+		w25.Position = 0;
 		w25.Expand = false;
 		w25.Fill = false;
+		w25.Padding = ((uint)(5));
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.status = new global::Gtk.Image ();
+		this.status.Name = "status";
+		this.status.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-yes", global::Gtk.IconSize.Menu);
+		this.hbox2.Add (this.status);
+		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.status]));
+		w26.PackType = ((global::Gtk.PackType)(1));
+		w26.Position = 1;
+		w26.Expand = false;
+		w26.Fill = false;
+		w26.Padding = ((uint)(5));
+		this.vbox1.Add (this.hbox2);
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox2]));
+		w27.PackType = ((global::Gtk.PackType)(1));
+		w27.Position = 1;
+		w27.Expand = false;
+		w27.Fill = false;
+		w27.Padding = ((uint)(5));
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
 		this.DefaultWidth = 320;
-		this.DefaultHeight = 240;
+		this.DefaultHeight = 286;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.tbPump.Clicked += new global::System.EventHandler (this.OnTbPumpClicked);

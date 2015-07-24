@@ -8,20 +8,34 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow () : base ("Center")
 	{
 		Build ();
-		GLib.Timeout.Add(500, new GLib.TimeoutHandler (getTemp) );
+		GLib.Timeout.Add(900000, new GLib.TimeoutHandler (getIP) );
+		GLib.Timeout.Add(10000, new GLib.TimeoutHandler (getTemp) );
+		GLib.Timeout.Add(1000, new GLib.TimeoutHandler (heartBeat) );
 		getIP ();
 	}
 
 	protected bool getTemp()
 	{
-		
+		Random num = new Random ();
+		decimal value = decimal.Round (Convert.ToDecimal (num.NextDouble()), 3);
+		pbTemp1.Fraction = Convert.ToDouble (value);
 		return true;
 	}
 
-	protected void getIP()
+	protected bool heartBeat()
+	{
+		if (status.Visible)
+			status.Visible = false;
+		else
+			status.Visible = true;
+		return true;
+	}
+
+	protected bool getIP()
 	{
 		IPAddress[] localIP = Dns.GetHostAddresses (Environment.MachineName);
 		lblIPAddress.Text = "IP: " + localIP [0].ToString ();
+		return true;
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -68,13 +82,19 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnMasterClicked (object sender, EventArgs e)
 	{
-		tbPump.Active = false;
-		tbPump.Label = "Turn On";
-		tbAux.Active = false;
-		tbAux.Label = "Turn On";
-		tbHeater.Active = false;
-		tbHeater.Label = "Turn On";
-		tbLight.Active = false;
-		tbLight.Label = "Turn On";
+		MessageDialog md = new MessageDialog (this, DialogFlags.DestroyWithParent, MessageType.Question, ButtonsType.YesNo, "Power Everything Off?");
+		var myResponse = md.Run ();
+		md.Destroy ();
+
+		if (Convert.ToInt16 (myResponse) == -8) {
+			tbPump.Active = false;
+			tbPump.Label = "Turn On";
+			tbAux.Active = false;
+			tbAux.Label = "Turn On";
+			tbHeater.Active = false;
+			tbHeater.Label = "Turn On";
+			tbLight.Active = false;
+			tbLight.Label = "Turn On";
+		}
 	}
 }
