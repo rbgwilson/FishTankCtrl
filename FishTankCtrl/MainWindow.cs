@@ -5,13 +5,9 @@ using Gtk;
 
 public partial class MainWindow: Gtk.Window
 {
-	// Global for Switch status
-	FishTankCtrl.Switches SWStatus = new FishTankCtrl.Switches ();
-
 	public MainWindow () : base ("Center")
 	{
 		Build ();
-		OnBtnMasterClicked ();
 		Timer UpdateIP = new Timer(300000);
 		UpdateIP.Elapsed += new ElapsedEventHandler (delegate {
 			getIP ();
@@ -34,83 +30,49 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnTbPumpClicked (object sender, EventArgs e)
 	{
-		if (!tbPump.Active) {
-			tbPump.Label = "Pump On";
-			SWStatus.Pump = false;
+		if (tbPump.Active) {
+			tbPump.Label = "Turn Off";
 		} else {
-			tbPump.Label = "Pump Off";
-			SWStatus.Pump = true;
+			tbPump.Label = "Turn On";
 		}
-		FishTankCtrl.MainClass.UpdateSwitches (SWStatus);
 	}
 		
 	protected void OnTbAuxClicked (object sender, EventArgs e)
 	{
-		if (!tbAux.Active) {
-			tbAux.Label = "Aux On";
-			SWStatus.Aux = false;
+		if (tbAux.Active) {
+			tbAux.Label = "Turn Off";
 		} else {
-			tbAux.Label = "Aux Off";
-			SWStatus.Aux = true;
+			tbAux.Label = "Turn On";
 		}
-		FishTankCtrl.MainClass.UpdateSwitches (SWStatus);
 	}
 
 	protected void OnTbLightClicked (object sender, EventArgs e)
 	{
-		if (!tbLight.Active) {
-			tbLight.Label = "Light On";
-			SWStatus.Light = false;
+		if (tbLight.Active) {
+			tbLight.Label = "Turn Off";
 		} else {
-			tbLight.Label = "Light Off";
-			SWStatus.Light = true;
+			tbLight.Label = "Turn On";
 		}
-		FishTankCtrl.MainClass.UpdateSwitches (SWStatus);
 	}
 		
 	protected void OnTbHeaterClicked (object sender, EventArgs e)
 	{
-		if (!tbHeater.Active) {
-			tbHeater.Label = "Heater On";
-			SWStatus.Heater = false;
+		if (tbHeater.Active) {
+			tbHeater.Label = "Turn Off";
 		} else {
-			tbHeater.Label = "Heater Off";
-			SWStatus.Heater = true;
+			tbHeater.Label = "Turn On";
 		}
-		FishTankCtrl.MainClass.UpdateSwitches (SWStatus);
-	}
-
-	protected void OnBtnMasterClicked ()
-	{
-		tbPump.Active = false;
-		tbPump.Label = "Pump On";
-		SWStatus.Pump = false;
-		tbAux.Active = false;
-		tbAux.Label = "Aux On";
-		SWStatus.Aux = false;
-		tbHeater.Active = false;
-		tbHeater.Label = "Heater On";
-		SWStatus.Heater = false;
-		tbLight.Active = false;
-		tbLight.Label = "Light On";
-		SWStatus.Light = false;
-		FishTankCtrl.MainClass.UpdateSwitches (SWStatus);
 	}
 
 	protected void OnBtnMasterClicked (object sender, EventArgs e)
 	{
 		tbPump.Active = false;
-		tbPump.Label = "Pump On";
-		SWStatus.Pump = false;
+		tbPump.Label = "Turn On";
 		tbAux.Active = false;
-		tbAux.Label = "Aux On";
-		SWStatus.Aux = false;
+		tbAux.Label = "Turn On";
 		tbHeater.Active = false;
-		tbHeater.Label = "Heater On";
-		SWStatus.Heater = false;
+		tbHeater.Label = "Turn On";
 		tbLight.Active = false;
-		tbLight.Label = "Light On";
-		SWStatus.Light = false;
-		FishTankCtrl.MainClass.UpdateSwitches (SWStatus);
+		tbLight.Label = "Turn On";
 	}
 }
