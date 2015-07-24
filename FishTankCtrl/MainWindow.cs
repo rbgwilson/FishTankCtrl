@@ -17,8 +17,15 @@ public partial class MainWindow: Gtk.Window
 	protected bool getTemp()
 	{
 		Random num = new Random ();
-		decimal value = decimal.Round (Convert.ToDecimal (num.NextDouble()), 3);
-		pbTemp1.Fraction = Convert.ToDouble (value);
+		decimal rndnum = new decimal();
+
+		rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble()), 3);
+		pbTemp1.Fraction = Convert.ToDouble (rndnum);
+		pbTemp1.Text = decimal.Round((rndnum * 100), 1).ToString () + " C";
+
+		rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble()), 3);
+		pbTemp2.Fraction = Convert.ToDouble (rndnum);
+		pbTemp2.Text = decimal.Round((rndnum * 100), 1).ToString () + " C";
 		return true;
 	}
 
@@ -34,7 +41,7 @@ public partial class MainWindow: Gtk.Window
 	protected bool getIP()
 	{
 		IPAddress[] localIP = Dns.GetHostAddresses (Environment.MachineName);
-		lblIPAddress.Text = "IP: " + localIP [0].ToString ();
+		lblIPAddress.Text = "IP Address: " + localIP [0].ToString ();
 		return true;
 	}
 
