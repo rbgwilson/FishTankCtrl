@@ -345,6 +345,7 @@
         <child>
           <widget class="Gtk.HBox" id="hbox2">
             <property name="MemberName" />
+            <property name="HeightRequest">20</property>
             <property name="Spacing">6</property>
             <child>
               <widget class="Gtk.Label" id="lblIPAddress">
@@ -362,7 +363,7 @@
             <child>
               <widget class="Gtk.Image" id="status">
                 <property name="MemberName" />
-                <property name="Pixbuf">stock:gtk-yes Menu</property>
+                <property name="Pixbuf">file:.\20px-Heart.png</property>
               </widget>
               <packing>
                 <property name="PackType">End</property>

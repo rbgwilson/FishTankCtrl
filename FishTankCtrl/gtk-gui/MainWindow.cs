@@ -314,6 +314,7 @@ public partial class MainWindow
 		w24.Padding = ((uint)(5));
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox2 = new global::Gtk.HBox ();
+		this.hbox2.HeightRequest = 20;
 		this.hbox2.Name = "hbox2";
 		this.hbox2.Spacing = 6;
 		// Container child hbox2.Gtk.Box+BoxChild
@@ -329,7 +330,7 @@ public partial class MainWindow
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.status = new global::Gtk.Image ();
 		this.status.Name = "status";
-		this.status.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-yes", global::Gtk.IconSize.Menu);
+		this.status.Pixbuf = new global::Gdk.Pixbuf (global::System.IO.Path.Combine (global::System.AppDomain.CurrentDomain.BaseDirectory, ".\\20px-Heart.png"));
 		this.hbox2.Add (this.status);
 		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.status]));
 		w26.PackType = ((global::Gtk.PackType)(1));
