@@ -330,7 +330,7 @@ public partial class MainWindow
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.status = new global::Gtk.Image ();
 		this.status.Name = "status";
-		this.status.Pixbuf = new global::Gdk.Pixbuf (global::System.IO.Path.Combine (global::System.AppDomain.CurrentDomain.BaseDirectory, ".\\20px-Heart.png"));
+		this.status.Pixbuf = new global::Gdk.Pixbuf (global::System.IO.Path.Combine (global::System.AppDomain.CurrentDomain.BaseDirectory, "20px-Heart.png"));
 		this.hbox2.Add (this.status);
 		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.status]));
 		w26.PackType = ((global::Gtk.PackType)(1));
