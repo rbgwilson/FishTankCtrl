@@ -10,7 +10,6 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 		GLib.Timeout.Add(900000, new GLib.TimeoutHandler (getIP) );
 		GLib.Timeout.Add(10000, new GLib.TimeoutHandler (getTemp) );
-		GLib.Timeout.Add(1000, new GLib.TimeoutHandler (heartBeat) );
 		getIP ();
 	}
 
@@ -29,19 +28,10 @@ public partial class MainWindow: Gtk.Window
 		return true;
 	}
 
-	protected bool heartBeat()
-	{
-		if (status.Visible)
-			status.Visible = false;
-		else
-			status.Visible = true;
-		return true;
-	}
-
 	protected bool getIP()
 	{
 		IPAddress[] localIP = Dns.GetHostAddresses (Environment.MachineName);
-		lblIPAddress.Text = "IP Address: " + localIP [0].ToString ();
+		lblIPAddress.Text = "IP Address:\n" + localIP [0].ToString ();
 		return true;
 	}
 
