@@ -23,17 +23,17 @@ public partial class MainWindow: Gtk.Window
 			Random num = new Random ();
 			decimal rndnum = new decimal();
 
-			rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble ()), 3);
+			rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble ()), 1);
 			pbTemp1.Fraction = Convert.ToDouble (rndnum);
 			pbTemp1.Text = decimal.Round ((rndnum * 100), 1).ToString () + " C";
 
-			rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble ()), 3);
+			rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble ()), 1);
 			pbTemp2.Fraction = Convert.ToDouble (rndnum);
 			pbTemp2.Text = decimal.Round ((rndnum * 100), 1).ToString () + " C";
 			return true;
 		} else {
-			decimal temp1 = decimal.Round(Convert.ToDecimal (getTemp (0)), 3);
-			pbTemp1.Fraction = Convert.ToDouble(temp1);
+			decimal temp1 = decimal.Round(Convert.ToDecimal(getTemp (0)), 1);
+			pbTemp1.Fraction = Convert.ToDouble (temp1);
 			pbTemp1.Text = temp1.ToString() + " C";
 			return true;
 		}
@@ -56,7 +56,6 @@ public partial class MainWindow: Gtk.Window
 		}
 
 		return double.Parse (tempText) / 1000;
-
 	}
 
 	protected bool getIP()
