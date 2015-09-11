@@ -309,7 +309,7 @@ public partial class MainWindow
 		// Container child hbox4.Gtk.Box+BoxChild
 		this.lblIPAddress = new global::Gtk.Label ();
 		this.lblIPAddress.Name = "lblIPAddress";
-		this.lblIPAddress.LabelProp = global::Mono.Unix.Catalog.GetString ("IP Address");
+		this.lblIPAddress.LabelProp = global::Mono.Unix.Catalog.GetString ("IP Address:");
 		this.hbox4.Add (this.lblIPAddress);
 		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.lblIPAddress]));
 		w24.Position = 0;

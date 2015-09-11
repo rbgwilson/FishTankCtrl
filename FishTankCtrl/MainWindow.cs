@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Net;
 using Gtk;
 using GLib;
@@ -9,23 +13,50 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 		GLib.Timeout.Add(900000, new GLib.TimeoutHandler (getIP) );
-		GLib.Timeout.Add(10000, new GLib.TimeoutHandler (getTemp) );
+		GLib.Timeout.Add(10000, new GLib.TimeoutHandler (updateTemp) );
 		getIP ();
 	}
 
-	protected bool getTemp()
+	protected bool updateTemp()
 	{
-		Random num = new Random ();
-		decimal rndnum = new decimal();
+		if (!Directory.Exists ("/sys/bus/w1/devices/")) {
+			Random num = new Random ();
+			decimal rndnum = new decimal();
 
-		rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble()), 3);
-		pbTemp1.Fraction = Convert.ToDouble (rndnum);
-		pbTemp1.Text = decimal.Round((rndnum * 100), 1).ToString () + " C";
+			rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble ()), 3);
+			pbTemp1.Fraction = Convert.ToDouble (rndnum);
+			pbTemp1.Text = decimal.Round ((rndnum * 100), 1).ToString () + " C";
 
-		rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble()), 3);
-		pbTemp2.Fraction = Convert.ToDouble (rndnum);
-		pbTemp2.Text = decimal.Round((rndnum * 100), 1).ToString () + " C";
-		return true;
+			rndnum = decimal.Round (Convert.ToDecimal (num.NextDouble ()), 3);
+			pbTemp2.Fraction = Convert.ToDouble (rndnum);
+			pbTemp2.Text = decimal.Round ((rndnum * 100), 1).ToString () + " C";
+			return true;
+		} else {
+			decimal temp1 = decimal.Round(Convert.ToDecimal (getTemp (0)), 3);
+			pbTemp1.Fraction = Convert.ToDouble(temp1);
+			pbTemp1.Text = temp1.ToString() + " C";
+			return true;
+		}
+	}
+
+	protected double getTemp(int sensorID)
+	{
+		DirectoryInfo devsDir = new DirectoryInfo ("/sys/bus/w1/devices/");
+		IEnumerable<DirectoryInfo> Sensors = devsDir.EnumerateDirectories ("28*");
+		string tempText = "";
+
+		if (sensorID <= Sensors.Count()) {
+			DirectoryInfo Sensor = Sensors.ElementAt (sensorID);
+			StreamReader Stream = Sensor.GetFiles ("w1_slave").FirstOrDefault ().OpenText ();
+			string w1slavetext = Stream.ReadToEnd ();
+			tempText = w1slavetext.Split(new string[] { "t=" }, StringSplitOptions.RemoveEmptyEntries)[1];
+			Stream.Close ();
+		} else {
+			tempText = "0";
+		}
+
+		return double.Parse (tempText) / 1000;
+
 	}
 
 	protected bool getIP()
