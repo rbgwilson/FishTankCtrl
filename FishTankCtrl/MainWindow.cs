@@ -55,11 +55,10 @@ public partial class MainWindow: Gtk.Window
 			string w1slavetext = Stream.ReadToEnd ();
 			tempText = w1slavetext.Split(new string[] { "t=" }, StringSplitOptions.RemoveEmptyEntries)[1];
 			Stream.Close ();
+			return double.Parse (tempText) / 1000;
 		} else {
-			tempText = "0";
+			return double.Parse("0");
 		}
-
-		return double.Parse (tempText) / 1000;
 	}
 
 	protected bool getIP()
